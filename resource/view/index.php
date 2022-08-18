@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>index page</h1>
-</body>
-</html>
+<?php
+include('includes/header.php')
+
+?>
+<div class="content">
+<div id="bg"></div>
+
+<form style="top: 123px;
+  left: 487px;">
+  <div class="form-field">
+    <input type="email" placeholder="Email / Username" required/>
+  </div>
+  
+  <div class="form-field">
+    <input type="password" placeholder="Password" required/>              
+           </div>
+  
+  <div class="form-field">
+    <button class="btn" type="submit">Log in</button>
+  </div>
+</form>
+
+</div>
+<?php
+include('includes/footer.php')
+?>

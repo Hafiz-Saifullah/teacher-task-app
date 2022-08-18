@@ -1,6 +1,6 @@
 <?php
 return [
     
-'landing'=>'resource/view/landing.php'    
-    
+'home'=>'resource/view/home.php',    
+'login'=>'resource/view/index.php', 
 ];
