@@ -7,19 +7,24 @@
     <link rel="stylesheet" href="resource/css/style.css?r=8232">
     <title>Document</title>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
 
 <div class="sidebar">
   <h1>Task Sheduler</h1>
-  <a class="active" href="?n=login">Teacher View</a>
-  <a href="?n=home">Student View</a>
+  <a class="<?php echo (isset($_GET['n']) && $_GET['n'] == 'login')? 'active':'';?> <?php echo (isset($_GET['n']) && $_GET['n'] == 'home' && $_SESSION['islogin'])? 'active':'';?>" href="?n=login">Teacher View</a>
+ 
     <?php
     if($_SESSION['islogin']){
       ?>
-        <a href="">Change Password</a>
-        <a href="?n=logout">Logout</a>
+        <a class="<?php echo (isset($_GET['n']) && $_GET['n'] == 'chpass')? 'active':'';?>" href="?n=chpass">Change Password</a>
+        <a class="<?php echo (isset($_GET['n']) && $_GET['n'] == 'logout')? 'active':'';?>" href="?n=logout">Logout</a>
         <?php
+    }else{
+      ?>
+       <a class="<?php echo (isset($_GET['n']) && $_GET['n'] == 'home')? 'active':'';?>" href="?n=home">Student View</a>
+      <?php
     }
     ?>
 
