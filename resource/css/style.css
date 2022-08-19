@@ -13,15 +13,8 @@
 body {
   font-family: 'Lato', sans-serif;
   color: #4A4A4A;
-  display: flex;
-  justify-content: flex-start;
-  overflow: hidden;
   margin: 0;
   padding: 0;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: space-between;
-  align-items: stretch;
 }
 
 form {
@@ -152,6 +145,7 @@ div.content {
   transition: 0.3s;
   margin: 5px;
   border-radius: 5px;
+  width: 30%;
 }
 
 .card:hover {

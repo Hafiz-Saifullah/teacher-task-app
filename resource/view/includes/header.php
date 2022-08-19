@@ -14,6 +14,14 @@
   <h1>Task Sheduler</h1>
   <a class="active" href="?n=login">Teacher View</a>
   <a href="?n=home">Student View</a>
-  <a href="#about"></a>
+    <?php
+    if($_SESSION['islogin']){
+      ?>
+        <a href="">Change Password</a>
+        <a href="?n=logout">Logout</a>
+        <?php
+    }
+    ?>
+
 </div>
 
