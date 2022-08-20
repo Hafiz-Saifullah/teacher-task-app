@@ -10,11 +10,11 @@ if($_SESSION['islogin']){
 
 <form style="top: 123px;left: 487px;" action="?n=loginAccept" method="POST">
     <span class="error"><?php echo isset($_SESSION['error']) ? $_SESSION['error'] :''; ?></span>
-  <div class="form-field">
-    <input type="email" name="email" placeholder="Email / Username" required/>
+  <div class="form-field email">
+    <input type="text" name="email" placeholder="Email / Username" required/>
   </div>
   
-  <div class="form-field">
+  <div class="form-field password">
     <input type="password" name="pass" placeholder="Password" required/>              
            </div>
   

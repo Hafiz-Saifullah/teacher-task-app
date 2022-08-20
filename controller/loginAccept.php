@@ -13,7 +13,11 @@ if(mysqli_num_rows($run) > 0){
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['email'] = $user['email'];
     $_SESSION['role_id'] = $user['role_id'];
-    header('location:?n=home');
+    if((int)$user['role_id'] == 1){
+        header('location:?n=dashboard');
+    }else{
+        header('location:?n=home');
+    }
 }else{
     $_SESSION['error'] = "Email or password incorecct";
     header('location:?n=login');

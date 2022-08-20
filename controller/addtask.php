@@ -7,7 +7,7 @@ $task = $_POST['task'];
 $task_id = $_POST['task_id'];
 
 
-if($task_id != 0){
+if($task_id == 0){
     $query = "INSERT INTO `task` (`id`, `class_id`, `user_id`, `dis`, `date`) VALUES (NULL, '".$class_id."', '".$user_id."', '".$task."', '".date("Y-m-d",strtotime($date))."')";
     $run = mysqli_query($con,$query);
     
