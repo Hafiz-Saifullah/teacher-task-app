@@ -110,24 +110,16 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
 //weeked and today
                     }else if(in_array($day,$weeklyoff_days) && $date == date('Y-m-d') && !in_array($date,$off_days)){
                     ?>
-                    
                     <div class="card" style='background: #47AB11;
                          color: white;'>
-                        <div class="container">
-                            <span style="float: left;"><?php echo ($date == date('Y-m-d')) ? "Weeked And Today":$i .' '.$day; ?></span>
-                            <?php
-                            if(($_SESSION['islogin'] && empty($task_arr[$date]))  || $user_id == $task_arr[$date]['user_id']){
-                                ?>
-                                 <span style="float: right;font-size: 25px;cursor: pointer;" onclick="addTask(<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['id']:0; ?>,<?php echo $user_id; ?>,<?php echo $class_id; ?>,'<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['dis']:''; ?>','<?php echo $date; ?>')">+</span>
-                                 <?php
-                             }
-                             ?>
-     
-                             <p style="margin-top: 23px;"> <?php  echo (!empty($task_arr[$date])) ? $task_arr[$date]['dis']:'Add task info';  ?></p>
-                             <h4 ><b><?php echo (!empty($task_arr[$date])) ? $task_arr[$date]['user']['email']:'Teacher Name'; ?></b></h4>
-
-                        </div>
+                    <div class="container">
+                        <span><?php echo $i .' '.$day; ?></span>
+                        <p>Weeked And Today</p>
+                    
+                        
                     </div>
+                </div>
+                   
                 <?php
 //                    public off
                 }else if(!in_array($day,$weeklyoff_days) && $date != date('Y-m-d') && in_array($date,$off_days)){
