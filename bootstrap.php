@@ -25,6 +25,7 @@ return [
 'delclass' => 'controller/admin/classes/delclass.php',
 
 'delteacher' => 'controller/admin/teachers/delteacher.php',
+'addteacher' => 'controller/admin/teachers/addteacher.php',
 
 
 ];

@@ -1,3 +1,4 @@
+<script> let data = []; </script>
 <?php
 session_start();
 include(dirname(__DIR__).'/includes/header.php');
@@ -12,7 +13,14 @@ $user_id = isset($_SESSION['islogin']) ? $_SESSION['user_id'] : '';
 $query_teachers = "SELECT * FROM `user` WHERE id != 1";
 $run_query_teachers = mysqli_query($con,$query_teachers);
 
+$query_roles = "SELECT * FROM `role`";
+$run_query_roles = mysqli_query($con,$query_roles);
+
 ?>
+
+<?php while ($row = mysqli_fetch_assoc($run_query_roles)){  ?>
+<script> data = [...data,<?php echo json_encode($row)?>]; </script>
+<?php } ?>
 <div class="content">
     <div class="top-header">
     <div class="header">
@@ -68,6 +76,7 @@ $run_query_teachers = mysqli_query($con,$query_teachers);
     
 </div>
 <script>
+    // console.log(data);
     function  addTeacher(name,id){
     var htmlbody = '';
    
@@ -78,10 +87,12 @@ $run_query_teachers = mysqli_query($con,$query_teachers);
     htmlbody = htmlbody + '<div class="container form-html" style=" display: flex;flex-direction: column;">';
     htmlbody = htmlbody + '<input type="hidden"  name="id" value="'+id+'" >';
     htmlbody = htmlbody + '<input type="text" name="name" id="" value="'+name+'" required>'; 
-    htmlbody = htmlbody + '<input type="password" name="pass" placeholder="Password" />'; 
+    htmlbody = htmlbody + '<input type="password" name="pass" placeholder="Password" required>'; 
     htmlbody = htmlbody + '<div class="form-field">';
-    htmlbody = htmlbody + '<select>'; 
-    htmlbody = htmlbody + '<option selected disabled>Select Role</option>'; 
+    htmlbody = htmlbody + '<select name="role_id" required>'; 
+    htmlbody = htmlbody + '<option selected disabled value="">Select Role</option>'; 
+    htmlbody = htmlbody + '<option value="1">Admin</option>'; 
+    htmlbody = htmlbody + '<option value="2">Teacher</option>'; 
     htmlbody = htmlbody + '</select>';      
     htmlbody = htmlbody + '</div>'; 
     htmlbody = htmlbody + '<button type="submit">Save</button>';

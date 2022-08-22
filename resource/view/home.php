@@ -31,11 +31,12 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
     $task_arr[$row['date']] = $row;
   
 }
+
 ?>
 <div class="content">
     <div class="top-header">
     <div class="header">
-        <a href="#default" class="logo">
+        <a href="#default" onclick="addTask();" class="logo">
             <?php
             if(isset($_SESSION['islogin'])){
                 echo $_SESSION['email'];
@@ -50,7 +51,7 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
             <form>
             <div class="form-field">
                 <select onchange="location = this.value;">
-                    <option  disabled>Select Class</option>
+                    <option  desabled>Select Class</option>
                     <?php while ($row = mysqli_fetch_assoc($get_classes)){
                         ?>
                         <option <?php echo (isset($_GET['class_id']) && $_GET['class_id'] == $row['id'])? 'selected':'';?>  value="?n=home&month=<?php echo $month; ?>&class_id=<?php echo $row['id']; ?>"><?php echo $row['class_name']; ?></option>
@@ -81,8 +82,6 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                     <div class="container">
                         <span><?php echo $i .' '.$day; ?></span>
                         <p>Weeked</p>
-                    
-                        
                     </div>
                 </div>
                     <?php
@@ -96,12 +95,12 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                             <?php
                             if((isset($_SESSION['islogin']) && empty($task_arr[$date]))  || $user_id == $task_arr[$date]['user_id']){
                                 ?>
-                                 <span style="float: right;font-size: 25px;cursor: pointer;" onclick="addTask(<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['id']:0; ?>,<?php echo $user_id; ?>,<?php echo $class_id; ?>,'<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['dis']:''; ?>','<?php echo $date; ?>')">+</span>
+                                 <span style="float: right;font-size: 25px;cursor: pointer;" onclick="addTask(<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['id']:0; ?>,<?php echo $user_id; ?>,<?php echo $class_id; ?>,'<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['des']:''; ?>','<?php echo $date; ?>')">+</span>
                                  <?php
                              }
                              ?>
      
-                             <p style="margin-top: 23px;"> <?php  echo (!empty($task_arr[$date])) ? $task_arr[$date]['dis']:'Add task info';  ?></p>
+                             <p style="margin-top: 23px;"> <?php  echo (!empty($task_arr[$date])) ? $task_arr[$date]['des']:'Add task info';  ?></p>
                              <h4 ><b><?php echo (!empty($task_arr[$date])) ? $task_arr[$date]['user']['email']:'Teacher Name'; ?></b></h4>
 
                         </div>
@@ -121,7 +120,7 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                     </div>
                 </div>
 
-                   
+                        
                 <?php
 //                    public off
                 }else if(!in_array($day,$weeklyoff_days) && $date != date('Y-m-d') && in_array($date,$off_days)){
@@ -146,12 +145,12 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                       
                         if((isset($_SESSION['islogin']) && empty($task_arr[$date]))  || (isset($_SESSION['islogin']) && $user_id == $task_arr[$date]['user_id'])){
                            ?>
-                            <span style="float: right;font-size: 25px;cursor: pointer;" onclick="addTask(<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['id']:0; ?>,<?php echo $user_id; ?>,<?php echo $class_id; ?>,'<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['dis']:''; ?>','<?php echo $date; ?>')">+</span>
+                            <span style="float: right;font-size: 25px;cursor: pointer;" onclick="addTask(<?php echo (!empty($task_arr[$date])) ? $task_arr[$date]['id']:0; ?>,<?php echo $user_id; ?>,<?php echo $class_id; ?>,'<?php echo (!empty($task_arr[$date])) ? $task_arr[$date]['des']:'Add Task For Today'; ?>','<?php echo $date; ?>')">+</span>
                             <?php
                         }
                         ?>
 
-                        <p style="margin-top: 23px;"> <?php  echo (!empty($task_arr[$date])) ? $task_arr[$date]['dis']:'Add task info';  ?></p>
+                        <p style="margin-top: 23px;"> <?php  echo (!empty($task_arr[$date])) ? $task_arr[$date]['des']:(isset($_SESSION['islogin'])?'Add Task Info':'No Task In This Day');  ?></p>
                         <h4 ><b><?php echo (!empty($task_arr[$date])) ? $task_arr[$date]['user']['email']:'Teacher Name'; ?></b></h4>
                     </div>
                 </div>
@@ -167,7 +166,8 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
     
 </div>
 <script>
-    function  addTask(task_id,user_id,class_id,dis,dates){
+    function  addTask(task_id,user_id,class_id,des,dates){
+        // console.log('ojdo');
     var htmlbody = '';
    
     htmlbody = htmlbody + '<form class="modal-content animate" action="?n=addtask" method="post">';
@@ -178,9 +178,9 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
     htmlbody = htmlbody + '<input type="hidden"  name="user_id" value="'+user_id+'" >';
     htmlbody = htmlbody + '<input type="hidden" name="class_id" value="'+class_id+'" >';
     htmlbody = htmlbody + '<input type="hidden"  name="date" value="'+dates+'" >';
-    htmlbody = htmlbody + '<div class="container form-html" style=" display: flex;flex-direction: column;">';
+    htmlbody = htmlbody + '<div class="container form-html" style=" desplay: flex;flex-direction: column;">';
     htmlbody = htmlbody + '<label for="task"><b>Enter your task</b></label>';
-    htmlbody = htmlbody + '<textarea name="task" id="" cols="30" rows="10">'+dis+'</textarea>';       
+    htmlbody = htmlbody + '<textarea name="task" id="" cols="30" rows="10">'+des+'</textarea>';       
     htmlbody = htmlbody + '<button type="submit">Save</button>';
       
     htmlbody = htmlbody+ '</div>';

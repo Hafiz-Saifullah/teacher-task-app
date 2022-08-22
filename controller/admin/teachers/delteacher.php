@@ -7,5 +7,5 @@ $id = $_GET['id'];
     $run = mysqli_query($con,$query);
     
     if($run){
-        header('location:?n=roles');
+        header('location:?n=teachers');
     }
