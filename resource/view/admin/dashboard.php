@@ -36,7 +36,7 @@ $get_classes = mysqli_query($con,$query_all_classes);
                     <option selected disabled>Select Class</option>
                     <?php while ($row = mysqli_fetch_assoc($get_classes)){
                         ?>
-                        <option <?php echo (isset($_GET['class_id']) && $_GET['class_id'] == $row['id'])? 'selected':'';?>  value="?n=home&month=<?php echo $month; ?>&class_id=<?php echo $row['id']; ?>"><?php echo $row['clas_name']; ?></option>
+                        <option <?php echo (isset($_GET['class_id']) && $_GET['class_id'] == $row['id'])? 'selected':'';?>  value="?n=home&month=<?php echo $month; ?>&class_id=<?php echo $row['id']; ?>"><?php echo $row['class_name']; ?></option>
                         <?php
                     }?>
                 </select>

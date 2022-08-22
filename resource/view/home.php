@@ -53,7 +53,7 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                     <option  disabled>Select Class</option>
                     <?php while ($row = mysqli_fetch_assoc($get_classes)){
                         ?>
-                        <option <?php echo (isset($_GET['class_id']) && $_GET['class_id'] == $row['id'])? 'selected':'';?>  value="?n=home&month=<?php echo $month; ?>&class_id=<?php echo $row['id']; ?>"><?php echo $row['clas_name']; ?></option>
+                        <option <?php echo (isset($_GET['class_id']) && $_GET['class_id'] == $row['id'])? 'selected':'';?>  value="?n=home&month=<?php echo $month; ?>&class_id=<?php echo $row['id']; ?>"><?php echo $row['class_name']; ?></option>
                         <?php
                     }?>
                 </select>
@@ -94,7 +94,7 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                         <div class="container">
                             <span style="float: left;"><?php echo ($date == date('Y-m-d')) ? "Today":$i .' '.$day; ?></span>
                             <?php
-                            if(($_SESSION['islogin'] && empty($task_arr[$date]))  || $user_id == $task_arr[$date]['user_id']){
+                            if((isset($_SESSION['islogin']) && empty($task_arr[$date]))  || $user_id == $task_arr[$date]['user_id']){
                                 ?>
                                  <span style="float: right;font-size: 25px;cursor: pointer;" onclick="addTask(<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['id']:0; ?>,<?php echo $user_id; ?>,<?php echo $class_id; ?>,'<?php echo (int)(!empty($task_arr[$date])) ? $task_arr[$date]['dis']:''; ?>','<?php echo $date; ?>')">+</span>
                                  <?php
@@ -112,7 +112,7 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                     ?>
                     <div class="card" style='background: #47AB11;
                          color: white;'>
-<<<<<<< Updated upstream
+
                     <div class="container">
                         <span><?php echo $i .' '.$day; ?></span>
                         <p>Weeked And Today</p>
@@ -120,16 +120,8 @@ while ($row = mysqli_fetch_assoc($run_query_tasks)){
                         
                     </div>
                 </div>
+
                    
-=======
-                        <div class="container">
-                            <span><?php echo ($date == date('Y-m-d')) ? "Today":$i .' '.$day; ?></span>
-                            <p>Weeked And Today</p>
-
-
-                        </div>
-                    </div>div
->>>>>>> Stashed changes
                 <?php
 //                    public off
                 }else if(!in_array($day,$weeklyoff_days) && $date != date('Y-m-d') && in_array($date,$off_days)){

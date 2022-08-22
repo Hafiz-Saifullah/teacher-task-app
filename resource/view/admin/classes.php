@@ -40,11 +40,11 @@ $run_query_classes  = mysqli_query($con,$query_classes);
                             <span style="float: left;"><?php echo $row['id']; ?></span>
                            
                                 <span style="float: right;font-size: 25px;cursor: pointer;">
-                                 <a href="javascript:void(0)" onclick="addClass('<?php echo $row['clas_name']; ?>',<?php echo $row['id']; ?>)">edit</a>
+                                 <a href="javascript:void(0)" onclick="addClass('<?php echo $row['class_name']; ?>',<?php echo $row['id']; ?>)">edit</a>
                                  <a href="?n=delclass&id=<?php echo $row['id']; ?>">delete</a>
                                 </span>
 
-                            <h4 style="margin-top: 23px;"><b><?php echo $row['clas_name']; ?></b></h4>
+                            <h4 style="margin-top: 23px;"><b><?php echo $row['class_name']; ?></b></h4>
                              <p>
                                 <a style="color:aliceblue;cursor: pointer;" href="?n=home&class_id=<?php echo $row['id']; ?>">View</a>
                              </p>
