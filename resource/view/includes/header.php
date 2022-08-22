@@ -13,6 +13,7 @@
 
 <div class="sidebar">
   <h1>Task Sheduler</h1>
+<<<<<<< Updated upstream
   <?php
     if((int)$_SESSION['role_id'] == 1){
       ?>
@@ -28,9 +29,12 @@
     }
     ?>
   
+=======
+  <a class="<?php echo (isset($_GET['n']) && $_GET['n'] == 'login')? 'active':'';?> <?php echo (isset($_GET['n']) && $_GET['n'] == 'home' && isset($_SESSION['islogin']))? 'active':'';?>" href="?n=login">Teacher View</a>
+>>>>>>> Stashed changes
  
     <?php
-    if($_SESSION['islogin']){
+    if(isset($_SESSION['islogin'])){
       ?>
         <a class="<?php echo (isset($_GET['n']) && $_GET['n'] == 'chpass')? 'active':'';?>" href="?n=chpass">Change Password</a>
         <a class="<?php echo (isset($_GET['n']) && $_GET['n'] == 'logout')? 'active':'';?>" href="?n=logout">Logout</a>

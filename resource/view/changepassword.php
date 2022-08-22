@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('includes/header.php');
-if(!$_SESSION['islogin']){
+if(!isset($_SESSION['islogin'])){
     header('location:?n=login');
 }
 ?>
